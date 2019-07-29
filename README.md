@@ -15,4 +15,4 @@ You will need to install minitest and rake gems
 
 ## Running the tests
 
-Once cloned, simply run ```rake```
+Once cloned, simply run ```ruby linked_list_app_cache_spec.rb```
