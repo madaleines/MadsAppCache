@@ -64,6 +64,12 @@ describe LinkedListAppCache do
 
             expect(@list.get_background_app_list().length).must_equal 0
         end
+
+        it "raises InvalidIndexError if you try to remove an index less than 0" do
+            test_id = 1
+            @list.set_background_app_id(test_id)
+            proc { @list.remove_background_app(-1) }.must_raise InvalidIndexError
+        end
     end
 
     describe "get_background_app_index(app_id)" do
