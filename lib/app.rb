@@ -1,7 +1,7 @@
 class App
-    attr_reader
+    attr_reader :app_id
 
-    def initialize(input)
-        @app_id = input[:app_id]
+    def initialize(id)
+        @app_id = id
     end
 end
