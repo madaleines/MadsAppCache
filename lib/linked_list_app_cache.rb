@@ -1,7 +1,7 @@
-class InvalidIndexError < StandardError
-end
+require_relative 'app'
+require_relative 'node'
 
-class InvalidAppIdError < StandardError
+class InvalidIndexError < StandardError
 end
 
 class LinkedListAppCache
@@ -20,10 +20,9 @@ class LinkedListAppCache
       app_list = []
 
       while current_node != nil
-          app_list << current_node
+          app_list << current_node.data.app_id
           current_node = current_node.next
       end
-
       return app_list
   end
 
@@ -33,7 +32,6 @@ class LinkedListAppCache
   def get_background_app_index(app_id)
       current_node = @head
       index = 0
-
       while current_node != nil
           if current_node.data.app_id == app_id
               return index
@@ -80,21 +78,16 @@ class LinkedListAppCache
   #   Space: O(1) - no new data structures are being created, just a single node
   def set_background_app_id(app_id)
     current_node = @head
-    length = 0
+    index = 1
 
-    raise InvalidAppIdError("Head cannot be nil") if @head == nil
-
-    while current_node.next != nil
-        if current_node.next.data.app_id == app_id
-            self.remove_next(current_node)
-            break
-        else
-            if length == @size - 1
+    if @head != nil
+        while current_node.next != nil
+            if current_node.next.data.app_id == app_id || index == @size - 1
                 self.remove_next(current_node)
                 break
             end
             current_node = current_node.next
-            length += 1
+            index += 1
         end
     end
 
