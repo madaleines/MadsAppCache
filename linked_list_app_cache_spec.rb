@@ -110,7 +110,7 @@ describe LinkedListAppCache do
             @list.set_background_app_id("6")
 
             expect(@list.get_background_app_list()).must_equal ["6", "5", "4", "3", "2"]
-            expect(@list.get_background_app_list().length).must_equal 5
+            expect(@list.get_background_app_list().length).must_equal CACHE_LIMIT
         end
     end
 end
